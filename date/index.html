@@ -4,89 +4,125 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Date Widget</title>
+<title>Notion Date Widget</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+:root{
+    --bg:#191919;
+    --text:#FFFFFF;
+}
+
 html,
 body{
     width:100%;
     height:100%;
-    background:transparent;
-    overflow:hidden;
-    font-family:Helvetica, Arial, sans-serif;
 }
 
 body{
+    background:var(--bg);
+    color:var(--text);
+
+    font-family:Helvetica, Arial, sans-serif;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    overflow:hidden;
 }
 
 .container{
+
     width:100%;
-    padding:20px 24px;
+    height:100%;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    color:white;
+    padding:20px 24px;
+
 }
 
 #weekday,
 #date{
+
     font-size:26px;
     font-weight:700;
-    letter-spacing:0.5px;
+    letter-spacing:.5px;
     text-transform:uppercase;
+
     white-space:nowrap;
 
     text-shadow:
-        0 1px 2px rgba(0,0,0,.9);
+        0px 1px 2px rgba(0,0,0,.45);
+
 }
+
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
+
     <div id="weekday"></div>
+
     <div id="date"></div>
+
 </div>
 
 <script>
+
 function updateDate(){
 
-    const today = new Date();
+    const now = new Date();
 
     const weekdays = [
-        "Sunday","Monday","Tuesday","Wednesday",
-        "Thursday","Friday","Saturday"
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
     ];
 
     const months = [
-        "January","February","March","April",
-        "May","June","July","August",
-        "September","October","November","December"
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
     ];
 
     document.getElementById("weekday").textContent =
-        weekdays[today.getDay()];
+        weekdays[now.getDay()].toUpperCase();
 
     document.getElementById("date").textContent =
-        months[today.getMonth()].toUpperCase() + " " + today.getDate();
+        months[now.getMonth()].toUpperCase() + " " + now.getDate();
+
 }
 
 updateDate();
 
-// Update every minute
 setInterval(updateDate,60000);
+
 </script>
 
 </body>
